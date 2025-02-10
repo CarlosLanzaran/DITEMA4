@@ -1,0 +1,66 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="InformeTickets" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e1462de-5a66-4285-95d5-f640732eb099">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TiendecitaClr"/>
+	<parameter name="FechaDesde" class="java.util.Date"/>
+	<parameter name="FechaHasta" class="java.util.Date"/>
+	<query language="SQL"><![CDATA[
+		SELECT idTicket, codigo, fecha, totalprecio 
+		FROM tickets
+		WHERE fecha BETWEEN $P{FechaDesde} AND $P{FechaHasta}
+	]]></query>
+	<field name="idTicket" class="java.lang.Integer"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="totalprecio" class="java.lang.Integer"/>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="355131aa-3ca4-4552-9a11-535b35753929" x="15" y="29" width="524" height="50" forecolor="#0841FF" backcolor="#FFFFFF" fontName="Felix Titling" fontSize="25.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[INFORME DE TICKETS]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="582eba02-3355-48a4-b92c-1cc6d9bca956" x="0" y="0" width="141" height="30" forecolor="#030303" fontName="Serif" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[ID Ticket]]></text>
+		</element>
+		<element kind="staticText" uuid="d5f4dd0c-0fbd-4b58-a6af-8ab77fa957c1" x="141" y="0" width="138" height="30" forecolor="#030303" fontName="Serif" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Código]]></text>
+		</element>
+		<element kind="staticText" uuid="ca3e0d05-5cf0-4553-a30b-dc5a43331f00" x="279" y="0" width="138" height="30" forecolor="#030303" fontName="Serif" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Fecha]]></text>
+		</element>
+		<element kind="staticText" uuid="385d37ff-e947-42d2-a68e-5e62c2dcfdc3" x="417" y="0" width="138" height="30" forecolor="#030303" fontName="Serif" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Total Precio]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<element kind="textField" uuid="cd2f98d6-894e-4ba7-aac5-094c93bf042f" x="0" y="0" width="141" height="30" forecolor="#404040" fontName="Serif" hTextAlign="Center">
+				<expression><![CDATA[$F{idTicket}]]></expression>
+			</element>
+			<element kind="textField" uuid="0f0f4bde-35a1-406e-8258-8cd3c442b11e" x="141" y="0" width="138" height="30" forecolor="#404040" fontName="Serif" hTextAlign="Center">
+				<expression><![CDATA[$F{codigo}]]></expression>
+			</element>
+			<element kind="textField" uuid="37c0e4c3-2d41-47a3-a1a7-caff6056d238" x="279" y="0" width="138" height="30" forecolor="#404040" fontName="Serif" pattern="dd/MM/yyyy" hTextAlign="Center">
+				<expression><![CDATA[$F{fecha}]]></expression>
+			</element>
+			<element kind="textField" uuid="9af87872-d911-4558-bf68-be960f6e08fb" x="417" y="0" width="138" height="30" forecolor="#404040" fontName="Serif" hTextAlign="Center">
+				<expression><![CDATA[$F{totalprecio}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="textField" uuid="3cdfdb7e-82fc-49d9-a579-fc48a42398d3" x="20" y="19" width="100" height="16" fontName="Serif" pattern="dd/MM/yyyy" hTextAlign="Center">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="cc93f667-ef87-4e63-b113-9b1be4629ef8" x="355" y="12" width="100" height="30" fontName="Serif" hTextAlign="Right">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="3df571db-44d5-40ea-b313-6cf2e8cd4256" x="455" y="12" width="100" height="30" fontName="Serif" evaluationTime="Report" hTextAlign="Left">
+			<expression><![CDATA[" of " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
